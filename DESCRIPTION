@@ -1,0 +1,31 @@
+Package: rppreiar
+Type: Package
+Version: 0.0.0.1
+Title: Interface to pprepair
+Description: TODO.
+Authors@R: c(person(c('Jeffrey', 'O'), 'Hanson',
+    email='jeffrey.hanson@uqconnect.edu.au', role = c('aut', 'cre')))
+Imports:
+    utils,
+    assertthat (>= 0.2.0)
+Suggests:
+    testthat (>= 2.0.1),
+    knitr (>= 1.2.0),
+    roxygen2 (>= 6.1.1),
+    rmarkdown (>= 1.10),
+    ggmap (>= 2.6.1),
+    ggplot2 (>= 3.1.0)
+Depends:
+    R(>= 3.4.0),
+    sf(>= 0.7-1)
+LinkingTo:
+    Rcpp (>= 0.12.19),
+    RcppProgress (>= 0.4.1)
+License: GPL-3
+LazyData: true
+URL: https://jeffreyhanson.github.io/rpprepair, https://github.com/jeffreyhanson/rpprepair
+BugReports: https://github.com/prioritizr/rpprepair/issues
+VignetteBuilder: knitr
+RoxygenNote: 6.1.1
+Collate:
+    'st_prepair.R'
