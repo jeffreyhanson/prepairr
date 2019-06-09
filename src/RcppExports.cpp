@@ -6,13 +6,14 @@
 using namespace Rcpp;
 
 // rcpp_prepair
-Rcpp::List rcpp_prepair(Rcpp::List x);
-RcppExport SEXP _rppreiar_rcpp_prepair(SEXP xSEXP) {
+Rcpp::CharacterVector rcpp_prepair(Rcpp::CharacterVector x, double min_area);
+RcppExport SEXP _rprepair_rcpp_prepair(SEXP xSEXP, SEXP min_areaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::List >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_prepair(x));
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type min_area(min_areaSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_prepair(x, min_area));
     return rcpp_result_gen;
 END_RCPP
 }

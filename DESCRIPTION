@@ -1,4 +1,4 @@
-Package: rppreiar
+Package: rprepair
 Type: Package
 Version: 0.0.0.1
 Title: Interface to pprepair
@@ -21,11 +21,15 @@ Depends:
 LinkingTo:
     Rcpp (>= 0.12.19),
     RcppProgress (>= 0.4.1)
+SystemRequirements: C++11
 License: GPL-3
 LazyData: true
-URL: https://jeffreyhanson.github.io/rpprepair, https://github.com/jeffreyhanson/rpprepair
-BugReports: https://github.com/prioritizr/rpprepair/issues
+URL: https://jeffreyhanson.github.io/rprepair, https://github.com/jeffreyhanson/rprepair
+BugReports: https://github.com/jeffreyhanson/rprepair/issues
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 Collate:
+    'RcppExports.R'
+    'internal.R'
+    'package.R'
     'st_prepair.R'
