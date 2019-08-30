@@ -45,12 +45,12 @@ library(lwgeom)
 library(rworldxtra)
 ```
 
-Next, we will obtain a spatial dataset containing invalid geometries. Specifically, we will import data delineating the country boundaries (originally from [Natural Earth](https://www.naturalearthdata.com/)).
+Next, we will obtain a small spatial dataset containing invalid geometries. Specifically, we will import data delineating the country boundaries (originally from [Natural Earth](https://www.naturalearthdata.com/)).
 
 ```{r}
 # import data, subset data to reduce total run time, and convert to sf format
 data(countriesHigh, package = "rworldxtra")
-x <- as(countriesHigh[c(12, 41, 132), ], "sf")
+x <- as(countriesHigh[c(12, 41, 132), "ADMIN"], "sf")
 
 # preview data
 print(x)
@@ -88,7 +88,7 @@ Next we will repair the data using the [_lwgeom R_ package](https://CRAN.R-proje
 ```{r}
 # repair geometries using lwgeom and record processing time
 lwgeom_time <- system.time({
-  z <- st-make_valid(x)
+  z <- st_make_valid(x)
 })[[3]]
 
 # preview cleaned data
@@ -102,7 +102,6 @@ print(lwgeom_time)
 ```
 
 As we can see, the `st_prepair` function in this package took `r prepair_time - lwgeom_time` seconds longer to complete. Therefore, do not use this package to clean your data.
-
 
 ### References
 
