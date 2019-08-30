@@ -25,6 +25,7 @@ LinkingTo:
 SystemRequirements: C++11
 License: GPL-3
 LazyData: true
+OS_type: unix
 URL: https://jeffreyhanson.github.io/prepairr, https://github.com/jeffreyhanson/prepairr
 BugReports: https://github.com/jeffreyhanson/prepairr/issues
 VignetteBuilder: knitr
