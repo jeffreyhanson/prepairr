@@ -48,7 +48,7 @@ Next, we will obtain a small spatial dataset containing invalid geometries. Spec
 ```{r "raw_data"}
 # import data, subset data to reduce total run time, and convert to sf format
 data(countriesHigh, package = "rworldxtra")
-x <- as(countriesHigh[c(12, 41, 132), "ADMIN"], "sf")
+x <- as(countriesHigh[c(12, 41, 132, 174, 190, 197, 211, 225), "ADMIN"], "sf")
 
 # preview data
 print(x)

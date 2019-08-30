@@ -34,22 +34,27 @@ Next, we will obtain a small spatial dataset containing invalid geometries. Spec
 ``` r
 # import data, subset data to reduce total run time, and convert to sf format
 data(countriesHigh, package = "rworldxtra")
-x <- as(countriesHigh[c(12, 41, 132), "ADMIN"], "sf")
+x <- as(countriesHigh[c(12, 41, 132, 174, 190, 197, 211, 225), "ADMIN"], "sf")
 
 # preview data
 print(x)
 ```
 
-    ## Simple feature collection with 3 features and 1 field
+    ## Simple feature collection with 8 features and 1 field
     ## geometry type:  MULTIPOLYGON
     ## dimension:      XY
-    ## bbox:           xmin: -179.999 ymin: -89.99983 xmax: 180 ymax: 8.565396
+    ## bbox:           xmin: -179.999 ymin: -89.99983 xmax: 180 ymax: 49.60178
     ## epsg (SRID):    4326
     ## proj4string:    +proj=longlat +datum=WGS84 +no_defs
-    ##          ADMIN                       geometry
-    ## 12  Antarctica MULTIPOLYGON (((-61.03006 -...
-    ## 41       Chile MULTIPOLYGON (((-69.47578 -...
-    ## 132    Liberia MULTIPOLYGON (((-9.433115 7...
+    ##           ADMIN                       geometry
+    ## 12   Antarctica MULTIPOLYGON (((-61.03006 -...
+    ## 41        Chile MULTIPOLYGON (((-69.47578 -...
+    ## 132     Liberia MULTIPOLYGON (((-9.433115 7...
+    ## 174 New Zealand MULTIPOLYGON (((174.0249 -4...
+    ## 190     Romania MULTIPOLYGON (((23.32512 43...
+    ## 197     Senegal MULTIPOLYGON (((-13.08374 1...
+    ## 211    Slovakia MULTIPOLYGON (((19.62695 49...
+    ## 225       Tonga MULTIPOLYGON (((-175.3144 -...
 
 ``` r
 # plot data
@@ -77,16 +82,21 @@ prepair_time <- system.time({
 print(y)
 ```
 
-    ## Simple feature collection with 3 features and 1 field
+    ## Simple feature collection with 8 features and 1 field
     ## geometry type:  GEOMETRY
     ## dimension:      XY
-    ## bbox:           xmin: -179.999 ymin: -89.99983 xmax: 180 ymax: 8.565396
+    ## bbox:           xmin: -179.999 ymin: -89.99983 xmax: 180 ymax: 49.60178
     ## epsg (SRID):    4326
     ## proj4string:    +proj=longlat +datum=WGS84 +no_defs
-    ##          ADMIN                       geometry
-    ## 12  Antarctica MULTIPOLYGON (((-52.51818 -...
-    ## 41       Chile MULTIPOLYGON (((-68.63828 -...
-    ## 132    Liberia POLYGON ((-9.433114 7.99331...
+    ##           ADMIN                       geometry
+    ## 12   Antarctica MULTIPOLYGON (((-52.51818 -...
+    ## 41        Chile MULTIPOLYGON (((-68.63828 -...
+    ## 132     Liberia POLYGON ((-9.433114 7.99331...
+    ## 174 New Zealand MULTIPOLYGON (((174.0249 -4...
+    ## 190     Romania POLYGON ((23.19696 43.86275...
+    ## 197     Senegal POLYGON ((-13.09161 15.5023...
+    ## 211    Slovakia POLYGON ((19.62873 49.41132...
+    ## 225       Tonga MULTIPOLYGON (((-175.3638 -...
 
 ``` r
 # verify that all geometries are now valid,
@@ -101,7 +111,7 @@ all(st_is_valid(y))
 print(prepair_time)
 ```
 
-    ## [1] 6.005
+    ## [1] 6.531
 
 ``` r
 # plot repaired data
@@ -122,16 +132,21 @@ lwgeom_time <- system.time({
 print(z)
 ```
 
-    ## Simple feature collection with 3 features and 1 field
+    ## Simple feature collection with 8 features and 1 field
     ## geometry type:  MULTIPOLYGON
     ## dimension:      XY
-    ## bbox:           xmin: -179.999 ymin: -89.99983 xmax: 180 ymax: 8.565396
+    ## bbox:           xmin: -179.999 ymin: -89.99983 xmax: 180 ymax: 49.60178
     ## epsg (SRID):    4326
     ## proj4string:    +proj=longlat +datum=WGS84 +no_defs
-    ##          ADMIN                       geometry
-    ## 12  Antarctica MULTIPOLYGON (((167.1133 -7...
-    ## 41       Chile MULTIPOLYGON (((-67.49094 -...
-    ## 132    Liberia MULTIPOLYGON (((-9.433115 7...
+    ##           ADMIN                       geometry
+    ## 12   Antarctica MULTIPOLYGON (((167.1133 -7...
+    ## 41        Chile MULTIPOLYGON (((-67.49094 -...
+    ## 132     Liberia MULTIPOLYGON (((-9.433115 7...
+    ## 174 New Zealand MULTIPOLYGON (((169.1804 -5...
+    ## 190     Romania MULTIPOLYGON (((23.32512 43...
+    ## 197     Senegal MULTIPOLYGON (((-13.08374 1...
+    ## 211    Slovakia MULTIPOLYGON (((19.62695 49...
+    ## 225       Tonga MULTIPOLYGON (((-176.207 -2...
 
 ``` r
 # verify that all geometries are now valid
@@ -145,9 +160,9 @@ all(st_is_valid(z))
 print(lwgeom_time)
 ```
 
-    ## [1] 2.183
+    ## [1] 1.469
 
-As we can see, the `st_prepair` function in this package took 3.82 seconds longer to complete. Therefore do not use this package to clean your data.
+As we can see, the `st_prepair` function in this package took 5.06 seconds longer to complete. Therefore do not use this package to clean your data.
 
 ### References
 
