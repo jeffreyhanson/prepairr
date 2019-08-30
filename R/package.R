@@ -1,19 +1,19 @@
-#' @include internal.R
+#' @include st_prepair.R
 NULL
 
-#' @useDynLib rprepair, .registration = TRUE
+#' @useDynLib prepairr, .registration = TRUE
 NULL
 
-#' \pkg{rprepair}: TODO
-#'
-#' TODO
+#' \pkg{prepairr}: Interface to the automatic geometry repair tool 'prepair'
 #'
 #' @seealso st_prepair
 #'
-#' @name rprepair
+#' @name prepairr
 #'
-#' @examples
-#' # TODO
+#' @inherit st_prepair examples
+#' @inherit st_prepair description
+#' @inherit st_prepair references
+#' @inherit st_prepair seealso
 #'
 #' @docType package
 NULL

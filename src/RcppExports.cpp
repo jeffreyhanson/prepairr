@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // rcpp_prepair
 Rcpp::CharacterVector rcpp_prepair(Rcpp::CharacterVector x, double min_area);
-RcppExport SEXP _rprepair_rcpp_prepair(SEXP xSEXP, SEXP min_areaSEXP) {
+RcppExport SEXP _prepairr_rcpp_prepair(SEXP xSEXP, SEXP min_areaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;

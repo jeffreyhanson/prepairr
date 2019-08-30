@@ -64,6 +64,6 @@ quickbuild:
 	cp -R doc inst/
 
 install:
-	R --slave -e "devtools::install_local('../oppr', force = TRUE, upgrade = 'never')"
+	R --slave -e "devtools::install_local('../prepairr', force = TRUE, upgrade = 'never')"
 
 .PHONY: initc data docs readme site test check checkwb build install man

@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 rcpp_prepair <- function(x, min_area = 0.0) {
-    .Call(`_rprepair_rcpp_prepair`, x, min_area)
+    .Call(`_prepairr_rcpp_prepair`, x, min_area)
 }
 

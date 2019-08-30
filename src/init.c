@@ -8,14 +8,14 @@
 */
 
 /* .Call calls */
-extern SEXP _rprepair_rcpp_prepair(SEXP, SEXP);
+extern SEXP _prepairr_rcpp_prepair(SEXP, SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_rprepair_rcpp_prepair", (DL_FUNC) &_rprepair_rcpp_prepair, 2},
+    {"_prepairr_rcpp_prepair", (DL_FUNC) &_prepairr_rcpp_prepair, 2},
     {NULL, NULL, 0}
 };
 
-void R_init_rprepair(DllInfo *dll)
+void R_init_prepairr(DllInfo *dll)
 {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);

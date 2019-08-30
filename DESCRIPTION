@@ -1,8 +1,8 @@
-Package: rprepair
+Package: prepairr
 Type: Package
 Version: 0.0.0.1
-Title: Interface to pprepair
-Description: TODO.
+Title: Interface to the automatic geometry repair tool 'prepair'
+Description: Automatically clean spatial data using the 'prepair' tool. Specifically, constrained triangulation is used to repair polygon data according to the ISO19107 standard (<doi:10.1016/j.cageo.2014.01.009>).
 Authors@R: c(person(c('Jeffrey', 'O'), 'Hanson',
     email='jeffrey.hanson@uqconnect.edu.au', role = c('aut', 'cre')))
 Imports:
@@ -10,6 +10,7 @@ Imports:
     assertthat (>= 0.2.0)
 Suggests:
     testthat (>= 2.0.1),
+    lwgeom (>= 0.1-7),
     knitr (>= 1.2.0),
     roxygen2 (>= 6.1.1),
     rmarkdown (>= 1.10),
@@ -24,12 +25,11 @@ LinkingTo:
 SystemRequirements: C++11
 License: GPL-3
 LazyData: true
-URL: https://jeffreyhanson.github.io/rprepair, https://github.com/jeffreyhanson/rprepair
-BugReports: https://github.com/jeffreyhanson/rprepair/issues
+URL: https://jeffreyhanson.github.io/prepairr, https://github.com/jeffreyhanson/prepairr
+BugReports: https://github.com/jeffreyhanson/prepairr/issues
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 Collate:
     'RcppExports.R'
-    'internal.R'
-    'package.R'
     'st_prepair.R'
+    'package.R'
