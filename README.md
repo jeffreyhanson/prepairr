@@ -3,7 +3,7 @@
 prepairr: Interface to prepair
 ------------------------------
 
-[![lifecycle](https://img.shields.io/badge/Lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![Travis Build Status](https://img.shields.io/travis/jeffreyhanson/prepairr/master.svg?label=Linux%20%26%20Mac%20OSX)](https://travis-ci.org/jeffreyhanson/prepairr)
+[![lifecycle](https://img.shields.io/badge/Lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![Travis Build Status](https://img.shields.io/travis/jeffreyhanson/prepairr/master.svg?label=Status)](https://travis-ci.org/jeffreyhanson/prepairr) [![Coverage Status](https://codecov.io/github/jeffreyhanson/prepairr/coverage.svg?branch=master)](https://codecov.io/github/jeffreyhanson/prepairr?branch=master)
 
 ### Overview
 
@@ -108,7 +108,7 @@ all(st_is_valid(y))
 print(prepair_time)
 ```
 
-    ## [1] 12.521
+    ## [1] 7.529
 
 ``` r
 # plot repaired data
@@ -152,9 +152,9 @@ all(st_is_valid(z))
 print(lwgeom_time)
 ```
 
-    ## [1] 2.198
+    ## [1] 1.535
 
-As we can see, the `st_prepair` function in this package took 10.32 seconds longer to complete. Therefore do not use this package to clean your data.
+As we can see, the `st_prepair` function in this package took 5.99 seconds longer to complete. Therefore do not use this package to clean your data.
 
 ### References
 
