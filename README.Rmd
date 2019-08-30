@@ -22,7 +22,7 @@ devtools::load_all()
 
 ### Overview
 
-The _prepairr R_ package provides an interface to the _prepair_ tool for repairing invalid polygon geometries. This project was developed as an experiment to benchmark the performance of the _prepair_ tool for repairing invalid geometries in large spatial datasets. Unfortunately, this package is actually **slower** than standard geometry cleaning tools (such as [`lwgeom::st_make_valid`](https://r-spatial.github.io/lwgeom/reference/valid.html). As a consequence, this package is unlikely to receive further development.
+The _prepairr R_ package provides an interface to the [_prepair_ tool](https://github.com/tudelft3d/prepair) for repairing invalid polygon geometries (Ledoux, Arroyo Ohori & Meijers, 2014). This project was developed as an experiment to benchmark the performance of the _prepair_ tool for repairing invalid geometries in large spatial datasets. Unfortunately, this package is actually **slower** than standard geometry cleaning tools (such as the [_lwgeom R package_]([_lwgeom R_ package](https://CRAN.R-project.org/package=lwgeom)). As a consequence, this package is unlikely to receive further development.
 
 ### Installation
 
@@ -35,8 +35,83 @@ if (!require(remotes))
 
 ### Usage
 
-TODO.
+We will illustrate the usage and (substandard) performance of this package. To achieve this, we will first load the _prepair_ package. We will also load two other packages for working with spatial vector data.
+
+```{r}
+# load package
+library(prepairr)
+library(sf)
+library(lwgeom)
+```
+
+Next, we will obtain a large spatial dataset containing invalid geometries. Specifically, we will download data from Database of Global Administrative Areas (https://gadm.org) that delineates the boundaries of the United States of America (USA).
+
+```{r}
+# download boundary for the USA
+data_path <- "usa_data.rds"
+if (!file.exists(data_path))
+  download.file(paste0("https://biogeo.ucdavis.edu/data/gadm3.6/Rsf/",
+                       "gadm36_MLT_0_sf.rds", data_path))
+
+# load data
+x <- readRDS(data_path)
+
+# preview data
+print(x)
+
+# plot data
+plot(st_geometry(x), main = "raw USA data")
+
+# verify that dataset has invalid geometries
+all(suppressWarnings(st_is_valid(x)))
+```
+
+Now we will repair the data using the [_prepair_ tool](https://github.com/tudelft3d/prepair). We will also record how long it takes to repair the data so we can compare it with standard data cleaning tools later.
+
+```{r}
+# repair geometries using prepair and record processing time
+prepair_time <- system.time({
+  y <- st_prepair(x)
+})[[3]]
+
+# preview cleaned data
+print(y)
+
+# verify that all geometries are now valid
+all(st_is_valid(y))
+
+# print processing time (seconds)
+print(prepair_time)
+
+# plot repaired data
+plot(st_geometry(y), main = "repaired USA data")
+```
+
+Next we will repair the data using the [_lwgeom R_ package](https://CRAN.R-project.org/package=lwgeom) and record how long this tool takes to repair the data.
+
+```{r}
+# repair geometries using lwgeom and record processing time
+lwgeom_time <- system.time({
+  z <- st-make_valid(x)
+})[[3]]
+
+# preview cleaned data
+print(z)
+
+# verify that all geometries are now valid
+all(st_is_valid(z))
+
+# print processing time (seconds)
+print(lwgeom_time)
+```
+
+As we can see, the `st_prepair` function in this package took `r prepair_time - lwgeom_time` seconds longer to complete. Therefore, do not use this package to clean your data.
+
+
+### References
+
+[Ledoux H, Arroyo Ohori K, and Meijers M (2014) A triangulation-based approach to automatically repair GIS polygons. Computers & Geosciences 66:121--131](https://doi.org/10.1016/j.cageo.2014.01.009).
 
 ### Citation
 
-This is an experimental package. You should not be citing this package because you should not be using it for any serious work.
+This is an experimental package. You should not be citing this package because you should not be using it for any reason at all.

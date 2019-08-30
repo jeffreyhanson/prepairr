@@ -8,6 +8,7 @@
 #'
 #' @param min_area \code{numeric} minimum area permitted. Polygons with an
 #'   area below this threshold are treated as slivers and omitted from analysis.
+#'   Defaults to 0.00001.
 #'
 #' @details Note that any non-polygonal geometries (e.g. point or line data) are
 #'   not subjected to the data cleaning process.
@@ -43,10 +44,10 @@
 #' plot(st_geometry(y), main = "repaired geometry")
 #'
 #' @export
-st_prepair <- function(x, min_area = 0) UseMethod("st_prepair")
+st_prepair <- function(x, min_area = 1e-5) UseMethod("st_prepair")
 
 #' @export
-st_prepair.sf <- function(x, min_area = 0) {
+st_prepair.sf <- function(x, min_area = 1e-5) {
   # assert arguments are valid
   assertthat::assert_that(inherits(x, "sf"), assertthat::is.number(min_area),
                           assertthat::noNA(min_area))
@@ -56,7 +57,7 @@ st_prepair.sf <- function(x, min_area = 0) {
 }
 
 #' @export
-st_prepair.sfc <- function(x, min_area = 0) {
+st_prepair.sfc <- function(x, min_area = 1e-5) {
   # assert arguments are valid
   assertthat::assert_that(inherits(x, "sfc"), assertthat::is.number(min_area),
                           assertthat::noNA(min_area))
