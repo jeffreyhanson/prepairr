@@ -6,7 +6,7 @@ output:
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(fig.path = "man/figures/README-", fig.align = "center",
-                      fig.height = 3.5, fig.width = 3.5)
+                      fig.height = 2.5, fig.width = 4.5)
 ```
 
 <!--- README.md is generated from README.Rmd. Please edit that file -->
@@ -33,17 +33,16 @@ if (!require(remotes))
 
 ### Usage
 
-Here we will explore the usage and (substandard) performance of this package. To achieve this, we will first load the _prepair_ package. We will also load two other packages for working with spatial vector data.
+Here we will explore the usage and (substandard) performance of this package. To achieve this, we will first load the _prepair_ package. We will also load some other packages for working with spatial vector data.
 
 ```{r}
 # load packages
 library(prepairr)
-library(sf)
 library(lwgeom)
 library(rworldxtra)
 ```
 
-Next, we will obtain a small spatial dataset containing invalid geometries. Specifically, we will import data delineating the country boundaries (originally from [Natural Earth](https://www.naturalearthdata.com/)).
+Next, we will obtain a small spatial dataset containing invalid geometries. Specifically, we will import data delineating country boundaries (originally from [Natural Earth](https://www.naturalearthdata.com/)).
 
 ```{r "raw_data"}
 # import data, subset data to reduce total run time, and convert to sf format
@@ -71,7 +70,8 @@ prepair_time <- system.time({
 # preview cleaned data
 print(y)
 
-# verify that all geometries are now valid
+# verify that all geometries are now valid,
+# except they aren't so this tool is slow AND doesn't fix all geometry issues
 all(st_is_valid(y))
 
 # print processing time (seconds)
@@ -99,7 +99,7 @@ all(st_is_valid(z))
 print(lwgeom_time)
 ```
 
-As we can see, the `st_prepair` function in this package took `r prepair_time - lwgeom_time` seconds longer to complete. Therefore, do not use this package to clean your data.
+As we can see, the `st_prepair` function in this package took `r round(prepair_time - lwgeom_time, 2)` seconds longer to complete. Therefore, do not use this package to clean your data.
 
 ### References
 
@@ -107,4 +107,4 @@ As we can see, the `st_prepair` function in this package took `r prepair_time - 
 
 ### Citation
 
-This is an experimental package. You should not be citing this package because you should not be using it for any reason at all.
+This is an experimental package. You should not be citing this package because you should not be using it.

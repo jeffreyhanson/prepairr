@@ -20,12 +20,11 @@ if (!require(remotes))
 
 ### Usage
 
-Here we will explore the usage and (substandard) performance of this package. To achieve this, we will first load the *prepair* package. We will also load two other packages for working with spatial vector data.
+Here we will explore the usage and (substandard) performance of this package. To achieve this, we will first load the *prepair* package. We will also load some other packages for working with spatial vector data.
 
 ``` r
 # load packages
 library(prepairr)
-library(sf)
 library(lwgeom)
 ```
 
@@ -37,7 +36,7 @@ library(rworldxtra)
 
     ## Loading required package: sp
 
-Next, we will obtain a small spatial dataset containing invalid geometries. Specifically, we will import data delineating the country boundaries (originally from [Natural Earth](https://www.naturalearthdata.com/)).
+Next, we will obtain a small spatial dataset containing invalid geometries. Specifically, we will import data delineating country boundaries (originally from [Natural Earth](https://www.naturalearthdata.com/)).
 
 ``` r
 # import data, subset data to reduce total run time, and convert to sf format
@@ -97,7 +96,8 @@ print(y)
     ## 132    Liberia POLYGON ((-9.433114 7.99331...
 
 ``` r
-# verify that all geometries are now valid
+# verify that all geometries are now valid,
+# except they aren't so this tool is slow AND doesn't fix all geometry issues
 all(st_is_valid(y))
 ```
 
@@ -108,7 +108,7 @@ all(st_is_valid(y))
 print(prepair_time)
 ```
 
-    ## [1] 8.364
+    ## [1] 6.65
 
 ``` r
 # plot repaired data
@@ -152,9 +152,9 @@ all(st_is_valid(z))
 print(lwgeom_time)
 ```
 
-    ## [1] 1.789
+    ## [1] 1.416
 
-As we can see, the `st_prepair` function in this package took 6.575 seconds longer to complete. Therefore, do not use this package to clean your data.
+As we can see, the `st_prepair` function in this package took 5.23 seconds longer to complete. Therefore, do not use this package to clean your data.
 
 ### References
 
@@ -162,4 +162,4 @@ As we can see, the `st_prepair` function in this package took 6.575 seconds long
 
 ### Citation
 
-This is an experimental package. You should not be citing this package because you should not be using it for any reason at all.
+This is an experimental package. You should not be citing this package because you should not be using it.
