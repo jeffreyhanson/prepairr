@@ -1,7 +1,7 @@
 
 <!--- README.md is generated from README.Rmd. Please edit that file -->
-prepairr: Interface to prepair
-------------------------------
+prepairr: Interface to the automatic geometry repair tool 'prepair'
+-------------------------------------------------------------------
 
 [![lifecycle](https://img.shields.io/badge/Lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![Travis Build Status](https://img.shields.io/travis/jeffreyhanson/prepairr/master.svg?label=Status)](https://travis-ci.org/jeffreyhanson/prepairr) [![Coverage Status](https://codecov.io/github/jeffreyhanson/prepairr/coverage.svg?branch=master)](https://codecov.io/github/jeffreyhanson/prepairr?branch=master)
 
@@ -108,7 +108,7 @@ all(st_is_valid(y))
 print(prepair_time)
 ```
 
-    ## [1] 7.529
+    ## [1] 9.309
 
 ``` r
 # plot repaired data
@@ -152,9 +152,9 @@ all(st_is_valid(z))
 print(lwgeom_time)
 ```
 
-    ## [1] 1.535
+    ## [1] 1.81
 
-As we can see, the `st_prepair` function in this package took 5.99 seconds longer to complete. Therefore do not use this package to clean your data.
+As we can see, the `st_prepair` function in this package took 7.5 seconds longer to complete. Therefore do not use this package to clean your data.
 
 ### References
 

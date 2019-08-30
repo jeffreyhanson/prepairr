@@ -11,7 +11,7 @@ knitr::opts_chunk$set(fig.path = "man/figures/README-", fig.align = "center",
 
 <!--- README.md is generated from README.Rmd. Please edit that file -->
 
-## prepairr: Interface to prepair
+## prepairr: Interface to the automatic geometry repair tool 'prepair'
 [![lifecycle](https://img.shields.io/badge/Lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Travis Build Status](https://img.shields.io/travis/jeffreyhanson/prepairr/master.svg?label=Status)](https://travis-ci.org/jeffreyhanson/prepairr)
 [![Coverage Status](https://codecov.io/github/jeffreyhanson/prepairr/coverage.svg?branch=master)](https://codecov.io/github/jeffreyhanson/prepairr?branch=master)
