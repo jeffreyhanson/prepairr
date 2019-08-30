@@ -16,12 +16,6 @@ r_build_args: --no-build-vignettes
 
 os:
   - linux
-  - osx
-
-matrix:
-  exclude:
-    - os: osx
-      r: devel
 
 env:
   global:
@@ -31,6 +25,7 @@ apt_packages:
   - curl
   - wget
   - qpdf
+  - libcgal-dev
 
 r_packages:
   - covr
@@ -49,10 +44,6 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get clean; fi;
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get autoremove --purge; fi;
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get --purge remove tex.\*-doc$; fi;
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install Caskroom/cask/xquartz; fi;
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ghostscript; fi;
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install udunits; fi;
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install curl; fi;
 
 after_success:
   - Rscript -e 'covr::codecov()'
