@@ -21,3 +21,5 @@ inst/extdata/dictionary.txt
 ^_pkgdown\.yml$
 ^CONTRIBUTING\.md$
 ^CONTRIBUTING\.Rmd$
+src/LICENSE.txt
+src/README.md

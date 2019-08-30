@@ -25,7 +25,6 @@ y <- st_prepair(x)
 # verify that repaired geometry is valid
 st_is_valid(y)
 
-
 # plot the original and repaired geometries
 par(mfrow = c(1, 2))
 plot(st_geometry(x), main = "invalid geometry")

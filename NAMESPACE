@@ -3,4 +3,5 @@
 S3method(st_prepair,sf)
 S3method(st_prepair,sfc)
 export(st_prepair)
+import(sf)
 useDynLib(prepairr, .registration = TRUE)

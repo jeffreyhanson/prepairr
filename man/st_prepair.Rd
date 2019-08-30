@@ -4,13 +4,14 @@
 \alias{st_prepair}
 \title{Repair geometry using prepair}
 \usage{
-st_prepair(x, min_area = 0)
+st_prepair(x, min_area = 1e-05)
 }
 \arguments{
 \item{x}{\code{\link[sf]{sf}} object.}
 
 \item{min_area}{\code{numeric} minimum area permitted. Polygons with an
-area below this threshold are treated as slivers and omitted from analysis.}
+area below this threshold are treated as slivers and omitted from analysis.
+Defaults to 0.00001.}
 }
 \value{
 \code{\link[sf]{sf}} object with repaired geometry.
@@ -38,7 +39,6 @@ y <- st_prepair(x)
 
 # verify that repaired geometry is valid
 st_is_valid(y)
-
 
 # plot the original and repaired geometries
 par(mfrow = c(1, 2))

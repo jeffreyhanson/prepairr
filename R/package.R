@@ -17,3 +17,6 @@ NULL
 #'
 #' @docType package
 NULL
+
+#' @import sf
+NULL
