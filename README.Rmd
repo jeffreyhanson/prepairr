@@ -23,11 +23,11 @@ devtools::load_all()
 
 ### Overview
 
-TODO.
+The _prepairr R_ package provides an interface to the _prepair_ tool for repairing invalid polygon geometries. This project was developed as an experiment to benchmark the performance of the _prepair_ tool for repairing invalid geometries in large spatial datasets. Unfortunately, this package is actually **slower** than standard geometry cleaning tools (such as [`lwgeom::st_make_valid`](https://r-spatial.github.io/lwgeom/reference/valid.html). As a consequence, this package is unlikely to receive further development.
 
 ### Installation
 
-The developmental version of the _prepairr R_ package can be installed using the following R code. Please note that this package requires the [_sf R_](https://github.com/r-spatial/sf) package which may require additional software to be installed. If you encounter problems installing the _prepairr R_ package, please consult the installation instructions for this packages.
+The developmental version of the _prepairr R_ package can be installed using the following R code. Please note that this package will only work on Unix systems and requires the [_sf R_](https://github.com/r-spatial/sf) package which requires additional software to be installed. If you encounter problems installing the _prepairr R_ package, please consult the installation instructions for the [_sf R_](https://github.com/r-spatial/sf) package.
 
 ```{r, eval = FALSE}
 if (!require(remotes))
