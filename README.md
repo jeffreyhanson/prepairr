@@ -7,7 +7,7 @@ prepairr: Interface to the automatic geometry repair tool 'prepair'
 
 ### Overview
 
-The *prepairr R* package provides an interface to the [*prepair* tool](https://github.com/tudelft3d/prepair) for repairing invalid polygon geometries (Ledoux, Arroyo Ohori & Meijers, 2014). This project was developed as an experiment to benchmark the performance of the *prepair* tool for repairing invalid geometries in large spatial datasets. Unfortunately, this package is actually **slower** than standard geometry cleaning tools (such as the [*lwgeom R package*](%5B_lwgeom%20R_%20package%5D(https://CRAN.R-project.org/package=lwgeom)). As a consequence, this package is unlikely to receive further development.
+The *prepairr R* package provides an interface to the [*prepair* tool](https://github.com/tudelft3d/prepair) for repairing invalid polygon geometries (Ledoux, Arroyo Ohori & Meijers, 2014). This project was developed as an experiment to benchmark the performance of the *prepair* tool for repairing invalid geometries in large spatial datasets. Unfortunately, this package is actually **slower** than standard geometry cleaning tools (such as the [*lwgeom R* package](https://CRAN.R-project.org/package=lwgeom)). As a consequence, this package is unlikely to receive further development.
 
 ### Installation
 
@@ -20,21 +20,14 @@ if (!require(remotes))
 
 ### Usage
 
-Here we will explore the usage and (substandard) performance of this package. To achieve this, we will first load the *prepair* package. We will also load some other packages for working with spatial vector data.
+Here we will explore the usage and (substandard) performance of this package. To achieve this, we will first load the *prepair* package and some other packages for working with spatial vector data.
 
 ``` r
 # load packages
 library(prepairr)
 library(lwgeom)
-```
-
-    ## Linking to liblwgeom 2.5.0dev r16016, GEOS 3.5.1, PROJ 4.9.2
-
-``` r
 library(rworldxtra)
 ```
-
-    ## Loading required package: sp
 
 Next, we will obtain a small spatial dataset containing invalid geometries. Specifically, we will import data delineating country boundaries (originally from [Natural Earth](https://www.naturalearthdata.com/)).
 
@@ -108,7 +101,7 @@ all(st_is_valid(y))
 print(prepair_time)
 ```
 
-    ## [1] 9.309
+    ## [1] 6.005
 
 ``` r
 # plot repaired data
@@ -152,9 +145,9 @@ all(st_is_valid(z))
 print(lwgeom_time)
 ```
 
-    ## [1] 1.81
+    ## [1] 2.183
 
-As we can see, the `st_prepair` function in this package took 7.5 seconds longer to complete. Therefore do not use this package to clean your data.
+As we can see, the `st_prepair` function in this package took 3.82 seconds longer to complete. Therefore do not use this package to clean your data.
 
 ### References
 
@@ -162,4 +155,4 @@ As we can see, the `st_prepair` function in this package took 7.5 seconds longer
 
 ### Citation
 
-This is an experimental package. You should not be citing this package because you should not be using it.
+This is an experimental package. You should not cite this package because you should not be using it.

@@ -21,7 +21,7 @@ devtools::load_all()
 
 ### Overview
 
-The _prepairr R_ package provides an interface to the [_prepair_ tool](https://github.com/tudelft3d/prepair) for repairing invalid polygon geometries (Ledoux, Arroyo Ohori & Meijers, 2014). This project was developed as an experiment to benchmark the performance of the _prepair_ tool for repairing invalid geometries in large spatial datasets. Unfortunately, this package is actually **slower** than standard geometry cleaning tools (such as the [_lwgeom R package_]([_lwgeom R_ package](https://CRAN.R-project.org/package=lwgeom)). As a consequence, this package is unlikely to receive further development.
+The _prepairr R_ package provides an interface to the [_prepair_ tool](https://github.com/tudelft3d/prepair) for repairing invalid polygon geometries (Ledoux, Arroyo Ohori & Meijers, 2014). This project was developed as an experiment to benchmark the performance of the _prepair_ tool for repairing invalid geometries in large spatial datasets. Unfortunately, this package is actually **slower** than standard geometry cleaning tools (such as the [_lwgeom R_ package](https://CRAN.R-project.org/package=lwgeom)). As a consequence, this package is unlikely to receive further development.
 
 ### Installation
 
@@ -34,9 +34,9 @@ if (!require(remotes))
 
 ### Usage
 
-Here we will explore the usage and (substandard) performance of this package. To achieve this, we will first load the _prepair_ package. We will also load some other packages for working with spatial vector data.
+Here we will explore the usage and (substandard) performance of this package. To achieve this, we will first load the _prepair_ package and some other packages for working with spatial vector data.
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 # load packages
 library(prepairr)
 library(lwgeom)
@@ -108,4 +108,4 @@ As we can see, the `st_prepair` function in this package took `r round(prepair_t
 
 ### Citation
 
-This is an experimental package. You should not be citing this package because you should not be using it.
+This is an experimental package. You should not cite this package because you should not be using it.
