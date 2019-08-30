@@ -21,4 +21,3 @@ inst/extdata/dictionary.txt
 ^_pkgdown\.yml$
 ^CONTRIBUTING\.md$
 ^CONTRIBUTING\.Rmd$
-usa_data.rds

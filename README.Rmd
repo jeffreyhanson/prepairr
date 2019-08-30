@@ -35,34 +35,30 @@ if (!require(remotes))
 
 ### Usage
 
-We will illustrate the usage and (substandard) performance of this package. To achieve this, we will first load the _prepair_ package. We will also load two other packages for working with spatial vector data.
+Here we will explore the usage and (substandard) performance of this package. To achieve this, we will first load the _prepair_ package. We will also load two other packages for working with spatial vector data.
 
 ```{r}
-# load package
+# load packages
 library(prepairr)
 library(sf)
 library(lwgeom)
+library(rworldxtra)
 ```
 
-Next, we will obtain a large spatial dataset containing invalid geometries. Specifically, we will download data from Database of Global Administrative Areas (https://gadm.org) that delineates the boundaries of the United States of America (USA).
+Next, we will obtain a spatial dataset containing invalid geometries. Specifically, we will import data delineating the country boundaries (originally from [Natural Earth](https://www.naturalearthdata.com/)).
 
 ```{r}
-# download boundary for the USA
-data_path <- "usa_data.rds"
-if (!file.exists(data_path))
-  download.file(paste0("https://biogeo.ucdavis.edu/data/gadm3.6/Rsf/",
-                       "gadm36_MLT_0_sf.rds", data_path))
-
-# load data
-x <- readRDS(data_path)
+# import data, subset data to reduce total run time, and convert to sf format
+data(countriesHigh, package = "rworldxtra")
+x <- as(countriesHigh[c(12, 41, 132), ], "sf")
 
 # preview data
 print(x)
 
 # plot data
-plot(st_geometry(x), main = "raw USA data")
+plot(st_geometry(x), main = "raw data")
 
-# verify that dataset has invalid geometries
+# verify that the dataset has invalid geometries
 all(suppressWarnings(st_is_valid(x)))
 ```
 
@@ -84,7 +80,7 @@ all(st_is_valid(y))
 print(prepair_time)
 
 # plot repaired data
-plot(st_geometry(y), main = "repaired USA data")
+plot(st_geometry(y), main = "repaired data")
 ```
 
 Next we will repair the data using the [_lwgeom R_ package](https://CRAN.R-project.org/package=lwgeom) and record how long this tool takes to repair the data.
