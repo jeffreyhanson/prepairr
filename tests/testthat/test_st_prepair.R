@@ -21,6 +21,7 @@ test_that("repairs geometry (sfc)", {
   expect_identical(st_crs(y)$epsg, 3857L)
   expect_equal(st_is_valid(y), c(TRUE, TRUE))
   expect_equivalent(y, y2)
+  expect_is(attr(y, "prepair_time"), "numeric")
 })
 
 test_that("repairs geometry (sf)", {
@@ -45,6 +46,7 @@ test_that("repairs geometry (sf)", {
   expect_identical(st_crs(y)$epsg, 3857L)
   expect_equal(st_is_valid(y), c(TRUE, TRUE))
   expect_equivalent(y, y2)
+  expect_is(attr(y, "prepair_time"), "numeric")
 })
 
 test_that("non-polygonal geometries", {
@@ -72,4 +74,5 @@ test_that("non-polygonal geometries", {
   expect_identical(st_crs(y)$epsg, 3857L)
   expect_equal(st_is_valid(y), rep(TRUE, 5))
   expect_equivalent(y, y2)
+  expect_is(attr(y, "prepair_time"), "numeric")
 })

@@ -7,7 +7,7 @@
 \title{\pkg{prepairr}: Interface to the automatic geometry repair tool 'prepair'}
 \description{
 Repair invalid geometry using constrained triangulation via the prepair
-software library (Ledoux, Arroyo Ohori & Meijers, 2014,
+tool (Ledoux, Arroyo Ohori & Meijers, 2014,
 \url{https://github.com/tudelft3d/prepair}).
 }
 \examples{

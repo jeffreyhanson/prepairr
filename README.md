@@ -70,10 +70,10 @@ all(suppressWarnings(st_is_valid(x)))
 
     ## [1] FALSE
 
-Now we will repair the data using the [*prepair* tool](https://github.com/tudelft3d/prepair). We will also record how long it takes to repair the data so we can compare it with standard data cleaning tools later.
+Now we will repair the data using the [*prepair* tool](https://github.com/tudelft3d/prepair). We will also record how long it takes to repair the data so we can compare it with standard data cleaning tools later. Please note that the timings reported below may be different on your system, since I have added `CXX11FLAGS += -O3 -march=native` to the Makevars file on my computer to increase performance of compiled code in R packages.
 
 ``` r
-# repair geometries using prepair and record processing time
+# repair geometries using st_prepair and record processing time
 prepair_time <- system.time({
   y <- st_prepair(x)
 })[[3]]
@@ -107,11 +107,20 @@ all(st_is_valid(y))
     ## [1] FALSE
 
 ``` r
-# print processing time (seconds)
+# print processing time with st_prepair (seconds)
 print(prepair_time)
 ```
 
-    ## [1] 6.531
+    ## [1] 3.552
+
+``` r
+# since st_prepair performs some preliminary processing to prepare data
+# for the prepair tool, we can also print the time spent just cleaning the
+# polygons using the prepair tool to measure its performance alone (seconds)
+print(attr(y, "prepair_time"))
+```
+
+    ## [1] 3.275
 
 ``` r
 # plot repaired data
@@ -160,9 +169,9 @@ all(st_is_valid(z))
 print(lwgeom_time)
 ```
 
-    ## [1] 1.469
+    ## [1] 1.454
 
-As we can see, the `st_prepair` function in this package took 5.06 seconds longer to complete. Therefore do not use this package to clean your data.
+As we can see, the `st_prepair` function in this package took 2.1 seconds longer to complete. Therefore do not use this package to clean your data.
 
 ### References
 

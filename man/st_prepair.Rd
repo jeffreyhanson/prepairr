@@ -2,23 +2,25 @@
 % Please edit documentation in R/st_prepair.R
 \name{st_prepair}
 \alias{st_prepair}
-\title{Repair geometry using prepair}
+\title{Repair geometry using the prepair tool}
 \usage{
 st_prepair(x, min_area = 1e-05)
 }
 \arguments{
-\item{x}{\code{\link[sf]{sf}} object.}
+\item{x}{\code{\link[sf]{sf}} or \code{\link[sf]{sfc}} object.}
 
 \item{min_area}{\code{numeric} minimum area permitted. Polygons with an
 area below this threshold are treated as slivers and omitted from analysis.
 Defaults to 0.00001.}
 }
 \value{
-\code{\link[sf]{sf}} object with repaired geometry.
+Object with repaired geometry. This object also has a
+  \code{"prepair_time"} attribute the records the time spent cleaning
+  the data using the prepair tool.
 }
 \description{
 Repair invalid geometry using constrained triangulation via the prepair
-software library (Ledoux, Arroyo Ohori & Meijers, 2014,
+tool (Ledoux, Arroyo Ohori & Meijers, 2014,
 \url{https://github.com/tudelft3d/prepair}).
 }
 \details{

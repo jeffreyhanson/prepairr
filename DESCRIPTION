@@ -1,6 +1,6 @@
 Package: prepairr
 Type: Package
-Version: 0.0.0.2
+Version: 0.0.0.3
 Title: Interface to the automatic geometry repair tool 'prepair'
 Description: Automatically clean spatial data using the 'prepair' tool. Specifically, constrained triangulation is used to repair polygon data according to the ISO19107 standard (<doi:10.1016/j.cageo.2014.01.009>).
 Authors@R: c(person(c('Jeffrey', 'O'), 'Hanson',

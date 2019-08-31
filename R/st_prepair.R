@@ -1,10 +1,10 @@
-#' Repair geometry using prepair
+#' Repair geometry using the prepair tool
 #'
 #' Repair invalid geometry using constrained triangulation via the prepair
-#' software library (Ledoux, Arroyo Ohori & Meijers, 2014,
+#' tool (Ledoux, Arroyo Ohori & Meijers, 2014,
 #' \url{https://github.com/tudelft3d/prepair}).
 #'
-#' @param x \code{\link[sf]{sf}} object.
+#' @param x \code{\link[sf]{sf}} or \code{\link[sf]{sfc}} object.
 #'
 #' @param min_area \code{numeric} minimum area permitted. Polygons with an
 #'   area below this threshold are treated as slivers and omitted from analysis.
@@ -13,7 +13,9 @@
 #' @details Note that any non-polygonal geometries (e.g. point or line data) are
 #'   not subjected to the data cleaning process.
 #'
-#' @return \code{\link[sf]{sf}} object with repaired geometry.
+#' @return Object with repaired geometry. This object also has a
+#'   \code{"prepair_time"} attribute the records the time spent cleaning
+#'   the data using the prepair tool.
 #'
 #' @references
 #' Ledoux H, Arroyo Ohori K, and Meijers M (2014) A triangulation-based
@@ -52,7 +54,9 @@ st_prepair.sf <- function(x, min_area = 1e-5) {
   assertthat::assert_that(inherits(x, "sf"), assertthat::is.number(min_area),
                           assertthat::noNA(min_area))
   # repair geometries
-  sf::st_geometry(x) <- st_prepair.sfc(sf::st_geometry(x))
+  g <- st_prepair.sfc(sf::st_geometry(x))
+  sf::st_geometry(x) <- g
+  attr(x, "prepair_time") <- attr(g, "prepair_time")
   x
 }
 
@@ -80,9 +84,11 @@ st_prepair.sfc <- function(x, min_area = 1e-5) {
   # polygons with four vertices when running prepair since it can't handle them
   nv <- vapply(s$geometry, function(x) nrow(x[[1]]), numeric(1))
   nv_gte4 <- nv > 4
-  # clean polygons
+  # clean polygons using prepair
   s2 <- data.frame(id = s$id[nv_gte4])
-  s2$geometry <- rcpp_prepair(sf::st_as_text(s$geometry[nv_gte4]), min_area)
+  prepair_time <- system.time({
+    s2$geometry <- rcpp_prepair(sf::st_as_text(s$geometry[nv_gte4]), min_area)
+  })[[3]]
   s2 <- st_as_sf(s2, wkt = "geometry")
   # add in polygons with four vertices, note that we manually set
   # some default CRS to ensure that rbind works
@@ -92,13 +98,15 @@ st_prepair.sfc <- function(x, min_area = 1e-5) {
     s2 <- rbind(s2, s[nv_gte4, ])
     s2 <- s2[order(s2$id), , drop = FALSE]
   }
-  # dissolve polygons
+  # dissolve polygons to convert fixed polygons to multipolygons
   s2 <- lapply(split(s2$geometry, s2$id), do.call, what = sf::st_union)
   # merge dissolved polygons with original sfc object
   x <- replace(x$geometry, which(x_pl), s2)
-  # return result
+  # prepare output
   x <- st_sfc(x)
   st_crs(x) <- x_crs
   st_precision(x) <- x_prec
+  attr(x, "prepair_time") <- prepair_time
+  # return output
   x
 }
